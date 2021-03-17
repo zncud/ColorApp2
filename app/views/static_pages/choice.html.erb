@@ -1,0 +1,31 @@
+<%= render 'share/color' %>
+<h2>下のボタンから色を選び、<span>反映ボタンを押してください</h2>
+<p>後に保存ボタンを押すと下に追加できます</p><br>
+<body class='color' onLoad="display_color(<%= @nail %>)">
+<canvas id="display-color" width="270" height="80">
+</canvas>
+<%= form_for :rgb, url: '/update' do |f| %>
+  <%= f.color_field :color0 %>
+  <%= f.color_field :color1 %>
+  <%= f.color_field :color2 %>
+  <%= f.color_field :color3 %>
+  <%= f.color_field :color4 %>
+  <%= f.submit "反映"%>
+<% end %>
+<%= button_to "保存", {controller: 'static_pages', action: 'saveDB'}, {method: :post} %>
+
+<div>保存した色</div>
+
+<% CreateUser.where(userid: session[:user_id]).reverse.each do |userColor| %>
+  <div class = "del_<%=userColor.id%>">
+      <canvas id="save-color<%=userColor.id %>" width="270" height="31">
+      </canvas>
+      <% paramColor = Color.find(userColor.id).rgb.split(',')%>
+      <%= link_to "反映", update_path(params: {rgb: paramColor}), class: "button1", method: :post %>
+      <%= link_to "削除", deleteColor_path(params: {id: userColor.id}), method: :delete ,class: "button1" %>
+    </div>
+  </div>
+<% end %>
+
+
+</body>

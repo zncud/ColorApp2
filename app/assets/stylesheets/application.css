@@ -1,0 +1,27 @@
+.color{
+    padding: 60px;
+    text-align: center;
+}
+.button1 {
+    width:70px;
+    font-size:13px;
+    font-weight:bold;
+    text-decoration:none;
+    display:inline;
+    text-align:center;
+    padding:0px 0 0px;
+    color:#fff;
+    background-color:#0d4a66;
+    border-radius:5px;
+}
+
+.error{
+    font-size: 0;
+}
+.err{
+    font-size:15px;
+    color:rgb(238, 78, 78)
+}
+span {
+    display:block;
+}
